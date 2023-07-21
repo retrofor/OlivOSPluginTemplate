@@ -2,30 +2,30 @@ import OlivOS
 import OlivOSPluginTemplate
 
 class Event(object):
-    def init(plugin_event, Proc):
+    def init(self, Proc):
         pass
 
-    def private_message(plugin_event, Proc):
-        unity_reply(plugin_event, Proc)
+    def private_message(self, Proc):
+        unity_reply(self, Proc)
 
-    def group_message(plugin_event, Proc):
-        unity_reply(plugin_event, Proc)
+    def group_message(self, Proc):
+        unity_reply(self, Proc)
 
-    def poke(plugin_event, Proc):
-        poke_reply(plugin_event, Proc)
+    def poke(self, Proc):
+        poke_reply(self, Proc)
 
-    def save(plugin_event, Proc):
+    def save(self, Proc):
         pass
 
-    def menu(plugin_event, Proc):
-        if plugin_event.data.namespace == 'OlivOSPluginTemplate':
-            if plugin_event.data.event == 'OlivOSPluginTemplate_Menu_001':
-                pass
-            elif plugin_event.data.event == 'OlivOSPluginTemplate_Menu_002':
-                pass
+    def menu(self, Proc):
+        pass
 
 def unity_reply(plugin_event, Proc):
-    if plugin_event.data.message == '/bot' or plugin_event.data.message == '.bot' or plugin_event.data.message == '[CQ:at,qq=' + str(plugin_event.base_info['self_id']) + '] .bot':
+    if plugin_event.data.message in [
+        '/bot',
+        '.bot',
+        '[CQ:at,qq=' + str(plugin_event.base_info['self_id']) + '] .bot',
+    ]:
         plugin_event.reply('OlivOSPluginTemplate')
 
 def poke_reply(plugin_event, Proc):
